@@ -9,13 +9,13 @@ from sklearn import metrics
 
 data = pd.read_csv("data.csv")
 data.pop('Unnamed: 0')
-print(data.head())
 
 X = []
 for column in data.columns:
     li = list(data[column])
     X.append(li)
-X = scale(np.asarray(X))
+X = (np.asarray(X))
+X = X.transpose()
 
 labels = pd.read_csv("labels.csv")
 labels.pop('Unnamed: 0')
@@ -41,5 +41,4 @@ def bench_k_means(estimator, name, data):
 
 clf = KMeans(n_clusters=k, init='random', n_init=10)
 for _ in range(5):
-    bench_k_means(clf, "1", data)
-
+    bench_k_means(clf, "1", X)
